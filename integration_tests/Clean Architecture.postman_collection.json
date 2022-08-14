@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "363d7e5e-398c-4b4c-8421-68bb6d1d5a62",
+		"name": "Clean Architecture",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6503642"
+	},
+	"item": [
+		{
+			"name": "System Management",
+			"item": [
+				{
+					"name": "People",
+					"item": [
+						{
+							"name": "200 Ok",
+							"item": [
+								{
+									"name": "200 - Create Person",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"last_name\": \"{{$randomLastName}}\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "200 - Search People",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/system/people?current_page=1&page_size=3&filter_value=k",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people"
+											],
+											"query": [
+												{
+													"key": "current_page",
+													"value": "1"
+												},
+												{
+													"key": "page_size",
+													"value": "3"
+												},
+												{
+													"key": "filter_value",
+													"value": "k"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "200 - Get Person",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/system/people/{{person_uid_exist_1}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												"{{person_uid_exist_1}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "200 - Update Person",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"uid\": \"{{person_uid_exist_1}}\",\r\n    \"last_name\": \"{{$randomLastName}}\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "200 - Delete Person",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"uids\": [\r\n        \"{{person_uid_exist_1}}\",\r\n        \"{{person_uid_exist_2}}\"\r\n    ]\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "400 Bad Request",
+							"item": [
+								{
+									"name": "400 - Create Person",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"K\",\r\n    \"last_name\": \"Ar\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "400 - Update Person",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"last_name\": \"Acosta Mungi\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "400 - Delete Person",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"uids\": [\r\n        \"{{person_uid_exist_1}}\",\r\n        \"{{person_uid_invalid}}\",\r\n        \"{{person_uid_not_exist}}\"\r\n    ]\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "404 Not Found",
+							"item": [
+								{
+									"name": "404 - Get Person",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/system/people/{{person_uid_not_exist}}",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												"{{person_uid_not_exist}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "404 - Update Person",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"uid\": \"{{person_uid_not_exist}}\",\r\n    \"last_name\": \"Acosta Mungi\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "404 - Delete Person",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"uids\": [\r\n        \"{{person_uid_not_exist}}\",\r\n        \"{{person_uid_exist_1}}\"\r\n    ]\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/system/people/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"system",
+												"people",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
