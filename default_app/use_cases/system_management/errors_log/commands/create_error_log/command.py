@@ -10,7 +10,7 @@ from django.http import Http404
 class CreateErrorLogCommand:
     """ ToDo: DocString """
 
-    def __init__(self, exception: Any = None, context: Any = None):
+    def __init__(self, exception: Any = None, context: Any = None):          
         self.description = str(exception)
         self.stack_trace = "".join(traceback.format_tb(exception.__traceback__))
         self.context = context

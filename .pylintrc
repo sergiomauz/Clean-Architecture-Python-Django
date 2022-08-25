@@ -153,6 +153,8 @@ disable=raw-checker-failed,
         deprecated-pragma,
         use-symbolic-message-instead,
         # ==================================================
+        line-too-long,
+        wrong-import-position,
         unused-import,
         too-few-public-methods,
         no-member,

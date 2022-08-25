@@ -23,7 +23,6 @@ class UpdatePersonHandler:
             person.name = command.name
         if command.last_name is not None:
             person.last_name = command.last_name
-
         person.save()
 
         update_person_vm = UpdatePersonVm(

@@ -2,8 +2,8 @@
     ToDo: DocString
 """
 from mediatr import Mediator
-from common_library.general import PagerVm
 from common_library.utils import str_yyyymmdd_t
+from common_library.general import PagerVm
 from default_app.domain.system_management import Person
 from .query import SearchPeopleQuery
 from .view_model import SearchPeopleVm

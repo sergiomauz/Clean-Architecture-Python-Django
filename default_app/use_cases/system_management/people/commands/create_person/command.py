@@ -10,8 +10,8 @@ from common_library.utils import Messages
 
 class CreatePersonCommand(DeferredValidator):
     """ ToDo: DocString """
-    name: str
-    last_name: str
+    name: str = None
+    last_name: str = None
 
     @classmethod
     def new(cls, request: Any):

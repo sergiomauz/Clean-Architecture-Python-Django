@@ -16,7 +16,7 @@ class DeletePersonHandler:
     def handle(self, command: DeletePersonCommand) -> DeletePersonVm:
         """ ToDo: DocString """
         people = Person.get_list_by_uids(uids_list = command.uids)
-        if people.count() != len(command.uids):
+        if len(people) != len(command.uids):
             raise Http404(Messages.ID_NOT_FOUND)
         people.delete()
 
