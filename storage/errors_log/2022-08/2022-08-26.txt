@@ -1,0 +1,175 @@
+===============================================================
+2022-08-26 03:36:09
+Error caught in this application handler
+Status Code: 500
+Error Message: relation "default_app_person" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "default_app_person" WHERE...
+                                          ^
+
+Stack Trace:   File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/api/system_management/people_api_views.py", line 40, in people_crud_api_view
+    application_view_model = mediator.send(query)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 150, in send
+    return start_func(0)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 149, in start_func
+    return beh_func(request,lambda: start_func(i+1))
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 139, in <lambda>
+    behaviors.append(lambda r,next: handler_func(r))
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/use_cases/system_management/people/queries/search_people/handler.py", line 18, in handle
+    total_items = Person.total_count(basic_search_parameters = query)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/domain/system_management/person.py", line 33, in total_count
+    Q(last_name__icontains = basic_search_parameters.filter_value)).count()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1361, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+
+===============================================================
+===============================================================
+2022-08-26 03:47:09
+Error caught in this application handler
+Status Code: 500
+Error Message: settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more details.
+Stack Trace:   File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/api/system_management/people_api_views.py", line 40, in people_crud_api_view
+    application_view_model = mediator.send(query)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 150, in send
+    return start_func(0)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 149, in start_func
+    return beh_func(request,lambda: start_func(i+1))
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 139, in <lambda>
+    behaviors.append(lambda r,next: handler_func(r))
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/use_cases/system_management/people/queries/search_people/handler.py", line 18, in handle
+    total_items = Person.total_count(basic_search_parameters = query)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/domain/system_management/person.py", line 33, in total_count
+    Q(last_name__icontains = basic_search_parameters.filter_value)).count()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1348, in execute_sql
+    sql, params = self.as_sql()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 595, in as_sql
+    from_, f_params = self.get_from_clause()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 942, in get_from_clause
+    clause_sql, clause_params = self.compile(from_clause)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 496, in compile
+    sql, params = node.as_sql(self, self.connection)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/datastructures.py", line 199, in as_sql
+    base_sql = compiler.quote_name_unless_alias(self.table_name)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 487, in quote_name_unless_alias
+    r = self.connection.ops.quote_name(name)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/dummy/base.py", line 20, in complain
+    raise ImproperlyConfigured(
+
+===============================================================
+===============================================================
+2022-08-26 03:47:14
+Error caught in this application handler
+Status Code: 500
+Error Message: settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more details.
+Stack Trace:   File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/api/system_management/people_api_views.py", line 40, in people_crud_api_view
+    application_view_model = mediator.send(query)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 150, in send
+    return start_func(0)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 149, in start_func
+    return beh_func(request,lambda: start_func(i+1))
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 139, in <lambda>
+    behaviors.append(lambda r,next: handler_func(r))
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/use_cases/system_management/people/queries/search_people/handler.py", line 18, in handle
+    total_items = Person.total_count(basic_search_parameters = query)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/domain/system_management/person.py", line 33, in total_count
+    Q(last_name__icontains = basic_search_parameters.filter_value)).count()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1348, in execute_sql
+    sql, params = self.as_sql()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 595, in as_sql
+    from_, f_params = self.get_from_clause()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 942, in get_from_clause
+    clause_sql, clause_params = self.compile(from_clause)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 496, in compile
+    sql, params = node.as_sql(self, self.connection)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/datastructures.py", line 199, in as_sql
+    base_sql = compiler.quote_name_unless_alias(self.table_name)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 487, in quote_name_unless_alias
+    r = self.connection.ops.quote_name(name)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/dummy/base.py", line 20, in complain
+    raise ImproperlyConfigured(
+
+===============================================================
+===============================================================
+2022-08-26 03:47:22
+Error caught in this application handler
+Status Code: 500
+Error Message: settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more details.
+Stack Trace:   File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/api/system_management/people_api_views.py", line 40, in people_crud_api_view
+    application_view_model = mediator.send(query)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 150, in send
+    return start_func(0)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 149, in start_func
+    return beh_func(request,lambda: start_func(i+1))
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/mediatr/mediator.py", line 139, in <lambda>
+    behaviors.append(lambda r,next: handler_func(r))
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/use_cases/system_management/people/queries/search_people/handler.py", line 18, in handle
+    total_items = Person.total_count(basic_search_parameters = query)
+  File "/mnt/d/Developer/Tutoriales/Clean Architecture/Python Django/default_app/domain/system_management/person.py", line 33, in total_count
+    Q(last_name__icontains = basic_search_parameters.filter_value)).count()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/query.py", line 470, in count
+    return self.query.get_count(using=self.db)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 552, in get_count
+    number = obj.get_aggregation(using, ["__count"])["__count"]
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/query.py", line 537, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1348, in execute_sql
+    sql, params = self.as_sql()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 595, in as_sql
+    from_, f_params = self.get_from_clause()
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 942, in get_from_clause
+    clause_sql, clause_params = self.compile(from_clause)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 496, in compile
+    sql, params = node.as_sql(self, self.connection)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/datastructures.py", line 199, in as_sql
+    base_sql = compiler.quote_name_unless_alias(self.table_name)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 487, in quote_name_unless_alias
+    r = self.connection.ops.quote_name(name)
+  File "/home/ubuntu/.pyenv/versions/Tutorial-CleanArchitecture-Django/lib/python3.10/site-packages/django/db/backends/dummy/base.py", line 20, in complain
+    raise ImproperlyConfigured(
+
+===============================================================
