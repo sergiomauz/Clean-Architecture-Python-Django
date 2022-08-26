@@ -3,16 +3,16 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from clean_architecture_django.settings.production import DEBUG
+from clean_architecture_django.settings import DEBUG
 
 def main():
     """Run administrative tasks."""
+    if DEBUG:
+        from dotenv import load_dotenv
+        load_dotenv()
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clean_architecture_django.settings')
-    
-    print("=====================================================")
-    print(os.environ)
-    print("=====================================================")
-    
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

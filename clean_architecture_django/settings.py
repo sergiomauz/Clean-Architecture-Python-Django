@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,9 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%xhe^rce@5ulovw1zww@0&z2^j1psu*(opa7*vugc%7u*1*wfj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG', True)
+if not DEBUG:
+    ALLOWED_HOSTS = [
+        f"{os.environ.get('ALLOWED_ALL_HOSTS', '')}"
+        ]
+else:
+    ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -138,12 +143,12 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test_clean_architecture_django',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+    'default': {        
+        'ENGINE': f"{os.environ.get('DEFAULT.POSTGRESQL.ENGINE', '')}",
+        'HOST': f"{os.environ.get('DEFAULT.POSTGRESQL.HOST', '')}",
+        'PORT': f"{os.environ.get('DEFAULT.POSTGRESQL.PORT', '')}",
+        'NAME': f"{os.environ.get('DEFAULT.POSTGRESQL.DATABASE', '')}",
+        'USER': f"{os.environ.get('DEFAULT.POSTGRESQL.USER', '')}",
+        'PASSWORD': f"{os.environ.get('DEFAULT.POSTGRESQL.PASSWORD', '')}",
     }
 }
