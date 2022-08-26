@@ -3,14 +3,9 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from clean_architecture_django.settings import DEBUG
 
 def main():
     """Run administrative tasks."""
-    if DEBUG:
-        from dotenv import load_dotenv
-        load_dotenv()
-
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'clean_architecture_django.settings')
 
     try:
