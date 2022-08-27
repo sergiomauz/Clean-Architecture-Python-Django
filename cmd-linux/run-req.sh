@@ -1,2 +1,2 @@
 # Requirements
-pip freeze > src/requirements.txt
+pip freeze > requirements.txt
