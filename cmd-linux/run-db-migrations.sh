@@ -8,4 +8,4 @@ do
     len=`expr length "$name"`
 done
 
-python manage.py makemigrations --name $name default_app
+python src/manage.py makemigrations --name $name default_app
