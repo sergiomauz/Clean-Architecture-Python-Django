@@ -11,11 +11,16 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+from common_library.utils import Constants
+
+# Load new environment variables
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -24,13 +29,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%xhe^rce@5ulovw1zww@0&z2^j1psu*(opa7*vugc%7u*1*wfj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get('DEBUG', True)
+if not DEBUG:
+    ALLOWED_HOSTS = [
+        f"{os.environ.get('ALLOWED_ALL_HOSTS', '')}"
+        ]
+else:
+    if not os.path.exists(Constants.SQLITE3_DIRECTORY):
+        os.makedirs(Constants.SQLITE3_DIRECTORY)
+    ALLOWED_HOSTS = []
 
 
 # Application definition
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,23 +49,18 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-
 BASE_APPS = [
     'external_services',
     'local_services',
     'common_library',
     'default_app',
 ]
-
 LOCAL_SERVICES = []
-
 ADITIONAL_APPS = [
     'rest_framework',
     'drf_yasg',
 ]
-
 INSTALLED_APPS = DJANGO_APPS + ADITIONAL_APPS + BASE_APPS
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -65,9 +70,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'clean_architecture_django.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -83,13 +86,10 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'clean_architecture_django.wsgi.application'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,30 +105,34 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'default_app.handlers.custom_exception_handler',
     'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+}
+
+# Database
+# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+DATABASES = {
+    'default': {        
+        'ENGINE': os.environ.get('DEFAULT_APP.DATABASE.ENGINE', os.environ.get('DEFAULT_APP.SQLITE.ENGINE')),
+        'HOST': os.environ.get('DEFAULT_APP.DATABASE.HOST'),
+        'PORT': os.environ.get('DEFAULT_APP.DATABASE.PORT'),
+        'NAME': os.environ.get('DEFAULT_APP.DATABASE.NAME', f"{Constants.SQLITE3_DIRECTORY}/{os.environ.get('DEFAULT_APP.SQLITE.NAME')}"),
+        'USER': os.environ.get('DEFAULT_APP.DATABASE.USER'),
+        'PASSWORD': os.environ.get('DEFAULT_APP.DATABASE.PASSWORD'),
+    }
 }
