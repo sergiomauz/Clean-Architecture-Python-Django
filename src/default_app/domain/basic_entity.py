@@ -14,6 +14,7 @@ class BasicEntity(models.Model):
     uid = models.UUIDField(primary_key = True, default = uuid.UUID(int = 0))
     created_at = models.DateTimeField(null = False, blank = False)
     modified_at = models.DateTimeField(null = True, blank = True)
+    disabled_at = models.DateTimeField(null = True, blank = True)
 
     class Meta:
         """ ToDo: DocString """
